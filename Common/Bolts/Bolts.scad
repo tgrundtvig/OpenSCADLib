@@ -14,7 +14,7 @@ difference()
     translate([0,0,-15])
     cube([10,5,30]);
     translate([5,0,0])
-    Rod_And_Hex_Nuts_Cutout(rod_length=20,
+    Rod_And_Hex_Nuts_Cutout(rod_length=40,
                             nut_distance=10,
                             rod_diameter=3,
                             nut_wrench_size=5.5,
@@ -29,7 +29,7 @@ difference()
 }
 
 translate([5,0,0])
-Rod_And_Hex_Nuts(   rod_length=20,
+Rod_And_Hex_Nuts(   rod_length=40,
                     nut_distance=10,
                     rod_diameter=3,
                     nut_wrench_size=5.5,
@@ -38,6 +38,7 @@ Rod_And_Hex_Nuts(   rod_length=20,
                     center=true,
                     distance_type="center", 
                     $fn=32             );
+
 
 //Hex_Nut(thread_diameter=3, wrench_size=5.5, height=3, turned= false, center=false);
 
@@ -127,7 +128,7 @@ module M3_Hex_Nut(turned=false, center=false)
     Hex_Nut(thread_diameter=3, wrench_size=5.5, height=3, turned=turned, center=center);
 }
 
-module Hex_Nut(thread_diameter, wrench_size, height, turned= false, center=false)
+module Hex_Nut(thread_diameter, wrench_size, height, turned=false, center=false)
 {
     rot = turned ? 30 : 0;
     t = center ? 0 : height/2;
@@ -165,7 +166,7 @@ module Hex_Nut_Cutout(thread_diameter, wrench_size, height, turned=false, center
     }
     else
     {
-        cylinder(d=2*wrench_size/sqrt(3), h=height+2*fitting, center=center, $fn=6);
+        cylinder(d=2*wrench_size/sqrt(3), h=height+2*fitting, center=true, $fn=6);
     }    
 }
 

@@ -1,4 +1,5 @@
-
+include <Common/Util/Shapes.scad>
+use <Common/Gears/GearUtil.scad>
 /*
 difference()
 {
@@ -7,7 +8,25 @@ difference()
     cylinder(d=8, h=8, $fn=64);
 }
 */
-
+difference()
+{
+    union()
+    {
+        translate([0,0,1])
+        SimpleTimingGear(gearHeight=12, numberOfTeeth=16, pitch=5, toothDia=3.5, fitting=0.3, gearRes=256, toothRes=64);
+        cylinder(d=28,h=1, $fn=256);
+        translate([0,0,13])
+        cylinder(d=5, h=0.4, $fn=64);
+    }
+    translate([0,0,1])
+    axis_width_M3_fastener_cutout(  axis_dia = 3.4,
+                                    gear_height=12,
+                                    gear_dia=28,
+                                    angular_resolution=64 );
+    translate([0,0,-1])
+    Cylinder(diameter=5.4, height=4, t_z="pos", angular_resolution=64);
+    
+}
 /*
 difference()
 {
@@ -15,7 +34,8 @@ difference()
     translate([0,0,-1])
     cylinder(d=24, h=12, $fn=64);
 }
-*/
+*
+
 
 //Driver2GT16T();
 //Driver2GT64T();
@@ -33,8 +53,8 @@ DriverGear( baseHeight=6,
             gearHeight=14,
             numberOfTeeth=20,
             pitch=2,
-            toothDia=1.2,
-            fitting=0.2,
+            toothDia=1,
+            fitting=0.3,
             gearRes=64,
             toothRes=32 );
 */
@@ -127,7 +147,7 @@ module Driver2GT96T()
 
 module SimpleTimingGear2GT(gearHeight, numberOfTeeth, gearRes, toothRes)
 {
-    SimpleTimingGear(gearHeight=gearHeight, numberOfTeeth=numberOfTeeth, pitch=2, toothDia=1, fitting=0.2, gearRes=gearRes, toothRes=toothRes);
+    SimpleTimingGear(gearHeight=gearHeight, numberOfTeeth=numberOfTeeth, pitch=2, toothDia=1.2, fitting=0.2, gearRes=gearRes, toothRes=toothRes);
 }
 
 module GearWithBase(    baseHeight,
